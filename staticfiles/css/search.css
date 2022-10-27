@@ -1,0 +1,21 @@
+.container{
+    border: 0px;
+    margin-top: 20px;
+    max-width: 1500px;
+ }
+ .card{
+     min-height: fit-content;
+ }
+ .division{
+     margin-top: 15px;
+     margin-bottom: 15px;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     text-align: center;
+     align-items: center;
+     
+ }
+ button{
+     text-decoration: none;
+ }

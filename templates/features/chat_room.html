@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{# head #}
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/friends.css' %}" type="text/css">
+{% endblock %}
+
+{# title #}
+{% block title %}
+      Friends
+{% endblock %}
+{# body #}
+{% block content %}
+    <div class="container ">
+        <textarea id="chat-log" cols="100" rows="20">
+            {% for chat in context.chats %}
+                {{chat.chat}}
+            {% endfor %}
+        </textarea><br>
+        <input id="chat-message-input" type="text" size="100"><br>
+        <input id="chat-message-submit" type="button" value="Send">
+        {{ context.room_name|json_script:"room-name" }}
+        {{ context.user1|json_script:"sender" }}
+        {{ context.user2|json_script:"receiver" }}
+    </div>
+    <script src="{% static 'js/chat_room.js' %}"></script>
+{% endblock content %}
