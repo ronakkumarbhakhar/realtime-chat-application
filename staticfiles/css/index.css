@@ -1,0 +1,200 @@
+/* header section */
+
+:root{
+    --text-color-pri:#D2D2D2;
+}
+
+.hero{
+    position: relative;
+    height: 100vh;
+    background-color: #060606;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    padding:0rem 3rem;
+}
+
+.hero-text{
+    font-family: sans-serif;
+    margin: auto;
+    color: var(--text-color-pri);
+    z-index: 2;
+}
+
+.hero-text p{
+    font-size: 7rem;
+    font-weight: 600;
+}
+
+.hero-text p span{
+    -webkit-text-stroke: 2px rgba(163, 20, 170, 0.83);
+    color:transparent;
+}
+
+.hero-text h2{
+    font-size: 6rem;
+    font-weight: 600;
+}
+
+.hero-text h2 span{
+    font-size: inherit;
+    background: linear-gradient(90deg, rgba(133, 27, 138, 0.83) 51.97%, rgba(101, 5, 106, 0.492) 93.19%);
+    background-clip: text;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-content{
+    position: relative;
+}
+
+.triangle{
+    position: absolute;
+    top:0;
+    right: 0;
+    background: linear-gradient(158.16deg, rgba(183, 0, 165, 0.76) 31.96%, rgba(107, 0, 157, 0.76) 41.66%, rgba(107, 0, 157, 0.76) 46.07%);
+    transform: rotate(-50.85deg) translate(-3rem,-10rem);
+    z-index: 0;
+    height: 100%;
+    width:100%;
+    clip-path: polygon(50% 0%, 0 68%, 99% 67%);
+}
+
+.hero-content-img{
+    height: 100%;
+    width:100%;
+}
+
+.hero-content-img img{
+    height: 100%;
+    width: auto;
+    transform: scale(0.8) translate(-15rem,10rem);
+}
+
+.hero-content::before{
+    content: '';
+    position: absolute;
+    height: 10rem;
+    width: 150vw;
+    bottom: 0;
+    right:0rem;
+    background: linear-gradient(0deg, rgba(119, 2, 125, 0.663) 51.97%, rgba(118, 2, 125, 0) 93.19%);
+    transform: translate(3rem,1rem) rotate(1.18deg);
+    z-index: 0;
+}
+
+
+
+@media screen and (max-width:1160px) {
+    .hero-content{
+        transform: translate(10rem);
+    }
+
+    .hero-text p{
+        font-size: 5rem;
+    }
+    .hero-text h2{
+        font-size: 4rem;
+    }
+    .hero-text h2 span{
+        font-size: 5rem;
+    }
+
+    .hero-content::before{
+        transform: translate(0rem,1rem) rotate(1.18deg);
+    }
+}
+
+@media screen and (max-width:850px) {
+    .hero{
+        position: relative;
+    }
+    .hero-text{
+        text-align: center;
+    }
+    .hero-content{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        transform: unset;
+    }
+
+    .triangle{
+        height: 450px;
+        width: 450px;
+        top: 50%;
+        left:50%;
+        right: unset;
+        transform-origin: center;
+        transform: translate(-50%,-50%) rotateZ(-150deg);
+    }
+    .hero-content-img img{
+        height: 100%;
+        width: auto;
+        position: absolute;
+        bottom: 0;
+        left:50%;
+        transform: translate(-50%,0px) ;
+    }
+
+    .hero-text h2 span{
+        background: linear-gradient(90deg, rgba(226, 217, 217, 0.955) 51.97%, rgba(92, 105, 113, 0.866) 93.19%);
+        background-clip: text;
+        -webkit-background-clip:text;
+        -webkit-text-fill-color: transparent;
+        -webkit-text-stroke: 1pxrgb(255, 255, 255)e;
+    }
+}
+
+@media screen and (max-width:400px) {
+    .triangle{
+        height: 350px;
+        width: 350px;
+    }
+    .hero-text p{
+        font-size: 4rem;
+    }
+    .hero-text h2{
+        font-size: 3.5rem;
+    }
+    .hero-text h2 span{
+        font-size: 4rem;
+    }
+
+    .triangle{
+        height: 450px;
+        width: 450px;
+        top: 50%;
+        left:50%;
+        right: unset;
+        transform-origin: center;
+        transform: translate(-50%,calc(-50% - 5rem)) rotateZ(-160deg);
+    }
+
+    .hero-content-img img{
+        height: 100%;
+        width: auto;
+        position: absolute;
+        bottom: 0;
+        left:50%;
+        transform: translate(-50%,8.5rem) scale(0.9) ;
+    }
+}
+
+@media screen and (max-width:350px){
+    .triangle{
+        height: 300px;
+        width: 300px;
+    }
+
+    .hero-content-img img{
+        height: 100%;
+        width: auto;
+        position: absolute;
+        bottom: 0;
+        left:50%;
+        transform: translate(-50%,10rem) scale(0.7) ;
+    }
+} 

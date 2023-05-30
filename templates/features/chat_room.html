@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{# head #}
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/chat_room.css' %}" type="text/css">
+{% endblock %}
+
+{# title #}
+{% block title %}
+      Friends
+{% endblock %}
+
+{# body #}
+{% block content %}
+    <section class="section-container">
+        <div class="profile">
+
+        </div>
+        <div  class="chat-container">
+            <div id="chat-log" class="chat-log">
+                {% for chat in context.chats %}
+                {% if chat.sent_by == user %}
+                    <div class="sent">
+                        <div class="chat sent-chat">
+                            {{chat.chat}}
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="recieved ">
+                        <div class="chat recieved-chat">
+                            {{chat.chat}}
+                        </div>
+                    </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            <div class="mssg-sender">
+                <input id="chat-message-input" class="input1" type="text" size="10000">
+                <div id="chat-message-submit" class="sendbtn">
+                    <img class="sendimg"  src="{% static '/media/send.png' %}" alt="send" srcset="">
+                </div>
+            </div>
+        </div>
+        
+        {{ context.user.id|json_script:"user" }}
+        {{ context.room_name|json_script:"room-name" }}
+        {{ context.user1|json_script:"sender" }}
+        {{ context.user2|json_script:"receiver" }}
+    </section>
+    <script src="{% static 'js/chat_room.js' %}"></script>
+{% endblock content %}
+

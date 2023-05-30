@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{# head #}
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/friends.css' %}" type="text/css">
+{% endblock %}
+
+{# title #}
+{% block title %}
+      Friends
+{% endblock %}
+{# body #}
+{% block content %}
+    <div class="container ">
+        <div class="details">
+            <div class="img">
+                <img src="{{ user.user_image.url }}" alt="" class="profilephoto">
+            </div>
+                
+            <div class="info"> 
+                <p>{{user.username}}</p><br>
+                <p>{{user.first_name}} {{user.last_name}}</p><br>
+                <p>{{user.address}}</p>
+                <P>{{user.age}}</P>
+                <button>deactivate</button>
+                <button>delete post</button>
+                <button>create post<button>
+                <button>delete all chats</button>
+            </div>
+       </div>
+       
+       <div class="posts">
+            <!-- all of my posts -->
+
+       </div>
+    </div>
+    <script src="{% static 'js/settings.js' %}"></script>
+{% endblock content %}

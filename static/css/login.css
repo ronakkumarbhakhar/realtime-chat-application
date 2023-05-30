@@ -1,0 +1,27 @@
+.form{
+    display: flex;
+    flex-direction: column;   
+    justify-content: center;
+    padding: auto;
+    width: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.input {
+    justify-content: center;
+    margin: auto;
+    align-items: center;
+    margin-bottom: 5px;
+}
+.field{
+   justify-content: center;
+}
+.submit-btn{
+    justify-content: center;
+    margin: auto;
+    align-items: center;
+    max-width:50% ;
+    padding: 5px;
+}

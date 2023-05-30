@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{# head #}
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}" type="text/css">
+{% endblock %}
+
+{# title #}
+{% block title %}
+      profile
+{% endblock %}
+{# body #}
+{% block content %}
+    <div class="container main">
+
+       <div class="details">
+            <div class="img">
+                <img src="{{ context.user.user_image.url }}" alt="" class="profilephoto">
+            </div>
+                
+            <div class="info"> 
+                <p>{{context.user.username}}</p><br>
+                <p>{{context.user.first_name}} {{user.last_name}}</p><br>
+                <p>{{context.user.address}}</p>
+                <P>{{context.user.age}}</P>
+                <P>{{context.user.private}}</P>
+                <P>{{context.friend}}</P>
+            </div>
+       </div>
+       
+       <div class="posts">
+            {% if  context.friend or not context.user.private %}
+           
+            {% else %}
+                <div class="card mb-3" style="width: 500px;" >
+                    <div class="card-body" style="height: 80px; padding:auto; margin:auto;">
+                        <p class="card-text">No such user found in friend list</p>
+                    </div>
+                </div>
+            {% endif %}
+       </div>
+    </div>
+    <script src="{% static 'js/profile.js' %}"></script>
+{% endblock content %}
