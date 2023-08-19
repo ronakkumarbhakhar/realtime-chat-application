@@ -1,7 +1,9 @@
+
 .container{
     border: 0px;
-    margin-top: 20px;
+    margin-top: 80px;
     max-width: 1500px;
+    font-size: 2rem;
  }
  .card{
      min-height: fit-content;
@@ -14,8 +16,136 @@
      justify-content: center;
      text-align: center;
      align-items: center;
-     
+     font-size: 1.8rem;
+     font-weight: 600;
  }
  button{
      text-decoration: none;
+ }
+ 
+ .category-btn{
+     border-radius: 25px;
+ }
+ 
+ .uname{
+     font-size: 1.3rem;
+ }
+ 
+ .fname{
+     font-size: 2rem;
+ }
+ 
+ .message-btn,.delete-btn,.profile-btn,.accept-btn{
+     font-size:1.6rem;
+     text-transform: capitalize;
+     border-radius: 25px;
+     transition: all 0.3s ease-in-out 0.1s;
+     box-shadow: 7px 5px 16px 0px rgb(88, 86, 86);
+ }
+ 
+ .message-btn:hover,.delete-btn:hover,.profile-btn:hover,.accept-btn:hover{
+     box-shadow: 5px 5px 15px rgb(88, 86, 86);
+     background-color: rgb(36, 111, 223);
+     color: rgb(236, 233, 233);
+     text-shadow: 0px 0px 5px rgb(0, 247, 255);
+ }
+ 
+ .user-card{
+     width: 500px;
+     border-radius: 25px;
+     border-top-left-radius: 100px;
+     border-bottom-left-radius: 100px;
+     border: 2px solid rgb(73, 134, 226);
+ }
+ 
+ .user-profile-img{
+     border: 2px solid rgb(73, 134, 226);
+     height: 80px;
+     width: 80px;
+     border-radius: 50%;
+     overflow: hidden;
+     object-fit: cover;
+     transform: translate(-1px);
+ }
+ 
+ .division-heading{
+     text-transform: capitalize;
+     border-bottom: 2px double;
+     margin-bottom: 1rem;
+ }
+ 
+ @media screen and (max-width: 790px) {
+ 
+     .card-main{
+         width: 500px;
+         display: grid;
+         /* grid-template-columns: 80px 207px 80px 80px; */
+         grid-template-columns: 1fr 2.6fr 1fr 1fr;
+         column-gap: 10px;
+     }
+ 
+     .card-body-container{
+         min-width: 150px;
+     }
+ 
+     .button{
+         min-width: 70px;
+         display: inline-block;
+     }
+ 
+     .message-btn,.delete-btn,.profile-btn,.accept-btn{
+         font-size:1.5rem;
+     }
+ 
+   }
+ 
+ @media screen and (max-width:560px) {
+     .user-card{
+         width: 400px;
+     }
+     .card-main{
+         width: 400px;
+     }
+ 
+     .card-body-container{
+         min-width: unset;
+     }
+ 
+     .button{
+         min-width: unset;
+         display: inline-block;
+     }
+ 
+     .message-btn,.delete-btn,.profile-btn,.accept-btn{
+         font-size:1.5rem;
+     }
+ }
+ @media screen and (max-width:440px) {
+     .user-card{
+         width: 315px;
+     }
+     .card-main{
+         width: 315px;
+         grid-template-columns: 1fr 1.5fr 1fr 1fr;
+         column-gap: 3px;
+     }
+     
+     .fname{
+         font-size: 1.7rem;
+         
+     }
+     
+     .uname{
+         display: none;
+     }
+ 
+     .message-btn,.delete-btn,.profile-btn,.accept-btn{
+         font-size:1.3rem;
+         border-radius: 15px;
+     }
+ 
+     .category-btn{
+         border-radius: 15px;
+         font-size: 1.5rem;
+     }
  }

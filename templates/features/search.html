@@ -20,17 +20,17 @@
             <div class="card-header">
               <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
-                    <button id="notfriendsbtn" class="nav-link active position-relative"  type="button" >not frineds<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    <button id="notfriendsbtn" class="nav-link active position-relative"  type="button" >New<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                         {{results.not_friend_no}}</span></button>
                   </li>
                 <li class="nav-item">
-                  <button id="friendsbtn" class="nav-link position-relative"  type="button" >friends<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{results.accepted_no}}</span></button>
+                  <button id="friendsbtn" class="nav-link position-relative"  type="button" >Friends<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{results.accepted_no}}</span></button>
                 </li>
                 <li class="nav-item">
-                  <button id="requestedbtn" class="nav-link position-relative" type="button">requested<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{results.sent_not_accepted_no}}</span></button>
+                  <button id="requestedbtn" class="nav-link position-relative" type="button">Requested<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{results.sent_not_accepted_no}}</span></button>
                 </li>
                 <li class="nav-item">
-                  <button id="receivedbtn" class="nav-link position-relative"  type="button">received<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{results.received_not_accepted_no}}</span></button>
+                  <button id="receivedbtn" class="nav-link position-relative"  type="button">Received<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{results.received_not_accepted_no}}</span></button>
                 </li>
               </ul>
             </div>
@@ -40,10 +40,10 @@
                 <div class="division" id="notfriends" >
                     {% if results.not_friend_no != 0 %}
                         {% for result in results.not_friend %}
-                        <div class="card mb-3" style="width: 500px;" >
+                        <div class="card mb-3 user-card" style="width: 500px;" >
                             
-                            <div class="row g-0" style="height: 80px; padding:0px;">
-                                <a href="{% url 'profile' result.id %}" class="col-md-2">
+                            <div class="row g-0 card-main" style="height: 80px; padding:0px;">
+                                <a href="{% url 'profile' result.id %}" class="col-md-2 user-profile-img">
                                     <div   style="height: 80px;">
                                         {% if result.user_image.url == None %}
                                             <img src="{% static 'media/user-profile.png' %}"  alt="user"  width="80px" height="80px">
@@ -53,15 +53,15 @@
                                         
                                     </div>
                                 </a>
-                                    <div class="col-md-6" >
+                                    <div class="col-md-6 card-body-container" >
                                         <div class="card-body" style="height: 80px; padding:auto; margin:auto;">
-                                            <h5 class="card-title">{{ result.username }}</h5>
-                                            <p class="card-text">{{ result.first_name}} {{ result.last_name }}</p>
+                                            <h5 class="card-title uname">{{ result.username }}</h5>
+                                            <p class="card-text fname">{{ result.first_name}} {{ result.last_name }}</p>
                                         </div>
                                     </div>
                             
-                                <div class="col-md-4" style="display:flex; flex-direction:column; justify-content:center; height: 80px; margin:auto;"> 
-                                    <button class="btn-primary request" data-sentById="{{ user.id }}" data-friendId="{{ result.id }}" style="max-width:90%; min-width:fit-content ;">request</button>
+                                <div class="col-md-4 button" style="display:flex; flex-direction:column; justify-content:center; height: 80px; margin:auto;"> 
+                                    <button class="btn-primary request message-btn" data-sentById="{{ user.id }}" data-friendId="{{ result.id }}" style="max-width:90%; min-width:fit-content ;">request</button>
                                 </div>
                             </div>
                         </div>
@@ -75,64 +75,58 @@
                     {% endif %}
                 </div>
 
-                <!-- friends -->
-                
-                <div class="division" id="friends" style="display:None;">
-                    <h1 >friends</h1>
+                  <!-- friends -->
+
+                  <div class="division" id="friends" style="display:None;">
+                    <h1 class="division-heading">Friends</h1>
                     {% if results.accepted_no != 0 %}
                     {% for friend in results.sent_accepted %}
-                    <div class="card mb-3" style="width: 500px;" >
-                        <div class="row g-0" style="height: 80px; padding:0px;">
-                            <a href="{% url 'profile' friend.sent_to.id %}" class="col-md-2">
-                                <div   style="height: 80px;">
-                                    {% if friend.sent_by.user_image.url == None %}
-                                        <img src="{% static 'media/user-profile.png' %}"  alt="user"  width="80px" height="80px">
-                                    {% else %}
-                                        <img src="{{ friend.sent_to.user_image.url }}"  alt="user"  width="80px" height="80px">
-                                    {% endif %}
-                                </div>
-                            </a>
-                                <div class="col-md-5" >
-                                    <div class="card-body" style="height: 80px; padding:auto; margin:auto;">
-                                        <h5 class="card-title">{{ friend.sent_to.username }}</h5>
-                                        <p class="card-text">{{ friend.sent_to.first_name}} {{ friend.sent_to.last_name }}</p>
-                                    </div>
-                                </div>
-                            
-                            <div class="col-md-2" style="display:flex; flex-direction:column; justify-content:center; height: 80px; margin:auto; "> 
-                                <button class="btn-primary sent" class="btn-primary chat_room" data-sentToId="{{ friend.sent_to.id }}" data-sentById="{{ friend.sent_by.id }}" style="max-width:95%; min-width:fit-content; text-decoration:none;">message</button>
+                    <div class="card mb-3 user-card">
+                        <div class="row g-0 card-main" style="height: 80px; padding:0px;">
+                            <div class="col-md-2 user-profile-img"  style="height: 80px;">
+                                {% if friend.sent_by.user_image.url == None %}
+                                    <img src="{% static 'media/user-profile.png' %}"  alt="user"  width="80px" height="80px">
+                                {% else %}
+                                    <img src="{{ friend.sent_to.user_image.url }}"  alt="user"  width="80px" height="80px">
+                                {% endif %}
                             </div>
-                            <div class="col-md-2" style="display:flex; flex-direction:column; justify-content:center; height: 80px; margin:auto;"> 
-                                <button class="btn-primary delete" data-friendId="{{ friend.id }}" style="max-width:90%; min-width:fit-content ;">delete</button>
+                            <div class="col-md-5 card-body-container" >
+                                <div class="card-body" style="height: 80px; padding:auto; margin:auto;">
+                                    <h5 class="card-title uname">{{ friend.sent_to.username }}</h5>
+                                    <p class="card-text fname">{{ friend.sent_to.first_name}} {{ friend.sent_to.last_name }}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-2 button" style="display:flex; flex-direction:column; justify-content:center; height: 80px; margin:auto; "> 
+                                <button class="btn-primary sent message-btn" data-sentToId="{{ friend.sent_to.id }}" data-sentById="{{ friend.sent_by.id }}" style="max-width:95%; min-width:fit-content;">message</button>
+                            </div>
+                            <div class="col-md-2 button" style="display:flex; flex-direction:column; justify-content:center; height: 80px; margin:auto;"> 
+                                <button class="btn-primary delete delete-btn" data-friendId="{{ friend.id }}" style="max-width:90%; min-width:fit-content ;">delete</button>
                             </div>
                         </div>
                     </div>
                     {% endfor %}
                 
                     {% for friend in results.received_accepted %}
-                        <div class="card mb-3" style="width: 500px;" >
-                            <div class="row g-0" style="height: 80px; padding:0px;">
-                                <a href="{% url 'profile' friend.sent_by.id %}" class="col-md-2">
-                                    <div   style="height: 80px;">
-                                        {% if friend.sent_by.user_image.url == None %}
-                                            <img src="{% static 'media/user-profile.png' %}"  alt="user"  width="80px" height="80px">
-                                        {% else %}
-                                            <img src="{{ friend.sent_by.user_image.url }}"  alt="user"  width="80px" height="80px">
-                                        {% endif %}
-                                    </div>
-                                </a>
-                                    <div class="col-md-5" >
-                                        <div class="card-body" style="height: 80px; padding:auto; margin:auto;">
-                                            <h5 class="card-title">{{ friend.sent_by.username }}</h5>
-                                            <p class="card-text">{{ friend.sent_by.first_name}} {{ friend.sent_by.last_name }}</p>
-                                        </div>
-                                    </div>
-                               
-                                <div class="col-md-2" style="display:flex; flex-direction:column; justify-content:center; height: 80px; margin:auto; "> 
-                                    <button class="btn-primary received" class="btn-primary chat_room" data-sentToId="{{ friend.sent_to.id }}" data-sentById="{{ friend.sent_by.id }}" style="max-width:95%; min-width:fit-content ;">message</button>
+                        <div class="card mb-3 user-card" style="width: 500px;" >
+                            <div class="row g-0 card-main" style="height: 80px; padding:0px;">
+                                <div class="col-md-2 user-profile-img"  style="height: 80px;">
+                                    {% if friend.sent_by.user_image.url == None %}
+                                        <img src="{% static 'media/user-profile.png' %}"  alt="user"  width="80px" height="80px">
+                                    {% else %}
+                                        <img src="{{ friend.sent_by.user_image.url }}"  alt="user"  width="80px" height="80px">
+                                    {% endif %}
                                 </div>
-                                <div class="col-md-2" style="display:flex; flex-direction:column; justify-content:center; height: 80px; margin:auto;"> 
-                                    <button class="btn-primary delete" data-friendId="{{ friend.id }}" style="max-width:90%; min-width:fit-content ;">delete</button>
+                                <div class="col-md-5 card-body-container" >
+                                    <div class="card-body" style="height: 80px; padding:auto; margin:auto;">
+                                        <h5 class="card-title uname">{{ friend.sent_by.username }}</h5>
+                                        <p class="card-text fname">{{ friend.sent_by.first_name}} {{ friend.sent_by.last_name }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 button" style="display:flex; flex-direction:column; justify-content:center; height: 80px; margin:auto; "> 
+                                    <button class="btn-primary received message-btn" data-sentToId="{{ friend.sent_to.id }}" data-sentById="{{ friend.sent_by.id }}" style="max-width:95%; min-width:fit-content; ">message</button>
+                                </div>
+                                <div class="col-md-2 button" style="display:flex; flex-direction:column; justify-content:center; height: 80px; margin:auto;"> 
+                                    <button class="btn-primary delete delete-btn" data-friendId="{{ friend.id }}" style="max-width:90%; min-width:fit-content ;">delete</button>
                                 </div>
                             </div>
                         </div>
@@ -140,7 +134,7 @@
                     {% else %}
                         <div class="card mb-3" style="width: 500px;" >
                             <div class="card-body" style="height: 80px; padding:auto; margin:auto;">
-                                <p class="card-text">No such user found in friend list</p>
+                                <p class="card-text fname">HA HA!! Bitch you got no results.<br>You will die alone!!!</p>
                             </div>
                         </div>
                     {% endif %}
@@ -149,32 +143,29 @@
                 <!-- requested -->
 
                 <div class="division" id="requested" style="display:None;">
-                    <h1 >Requested</h1>
+                    <h1 class="division-heading">Requested</h1>
                     {% if results.sent_not_accepted_no != 0 %}
                         {% for friend in results.sent_not_accepted %}
-                            <div class="card mb-3" style="width: 500px;" >
-                                <div class="row g-0" style="height: 80px; padding:0px;">
-                                    <a href="{% url 'profile' friend.sent_to.id %}" class="col-md-2">
-                                        <div   style="height: 80px;">
-                                            {% if friend.sent_by.user_image.url == None %}
-                                                <img src="{% static 'media/user-profile.png' %}"  alt="user"  width="80px" height="80px">
-                                            {% else %}
-                                                <img src="{{ friend.sent_to.user_image.url }}"  alt="user"  width="80px" height="80px">
-                                            {% endif %}
-                                        </div>
-                                    </a>
-                                        <div class="col-md-5" >
-                                            <div class="card-body" style="height: 80px; padding:auto; margin:auto;">
-                                                <h5 class="card-title">{{ friend.sent_to.username }}</h5>
-                                                <p class="card-text">{{ friend.sent_to.first_name}} {{ friend.sent_to.last_name }}</p>
-                                            </div>
-                                        </div>
-                                    
-                                    <div class="col-md-2" style="display:flex; flex-direction:column; justify-content:center; height: 80px; margin:auto; "> 
-                                        <a href="{% url 'profile' friend.sent_to.id %}" class="btn-primary profile" data-sentToId="{{ friend.sent_to.id }}" style="max-width:90%; min-width:fit-content; text-decoration:none;">profile</a>
+                            <div class="card mb-3 user-card" style="width: 500px;" >
+                                <div class="row g-0 card-main" style="height: 80px; padding:0px;">
+                                    <div class="col-md-2 user-profile-img"  style="height: 80px;">
+                                        {% if friend.sent_by.user_image.url == None %}
+                                            <img src="{% static 'media/user-profile.png' %}"  alt="user"  width="80px" height="80px">
+                                        {% else %}
+                                            <img src="{{ friend.sent_to.user_image.url }}"  alt="user"  width="80px" height="80px">
+                                        {% endif %}
                                     </div>
-                                    <div class="col-md-2" style="display:flex; flex-direction:column; justify-content:center; height: 80px; margin:auto; "> 
-                                        <button class="btn-primary delete" data-friendId="{{ friend.id }}" style="max-width:90%; min-width:fit-content ;">delete</button>
+                                    <div class="col-md-5 card-body-container" >
+                                        <div class="card-body" style="height: 80px; padding:auto; margin:auto;">
+                                            <h5 class="card-title uname">{{ friend.sent_to.username }}</h5>
+                                            <p class="card-text fname">{{ friend.sent_to.first_name}} {{ friend.sent_to.last_name }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 button" style="display:flex; flex-direction:column; justify-content:center; height: 80px; margin:auto; "> 
+                                        <button class="btn-primary profile profile-btn" data-sentToId="{{ friend.sent_to.id }}" style="max-width:90%; min-width:fit-content ;">profile</button>
+                                    </div>
+                                    <div class="col-md-2 button" style="display:flex; flex-direction:column; justify-content:center; height: 80px; margin:auto; "> 
+                                        <button class="btn-primary delete delete-btn" data-friendId="{{ friend.id }}" style="max-width:90%; min-width:fit-content ;">delete</button>
                                     </div>
                                 </div>
                             </div>
@@ -183,7 +174,7 @@
                         {% else %}
                             <div class="card mb-3" style="width: 500px;" >
                                 <div class="card-body" style="height: 80px; padding:auto; margin:auto;">
-                                    <p class="card-text">You sent no request to such user</p>
+                                    <p class="card-text fname">No new requests sent</p>
                                 </div>
                             </div>
                         {% endif %}
@@ -192,41 +183,38 @@
                 <!-- received -->
 
                 <div class="division" id="received" style="display:None;">
-                    <h1 >Received</h1>
+                    <h1 class="division-heading">Received</h1>
                     {% if results.received_not_accepted_no != 0 %}
-                        {% for friend in resluts.received_not_accepted %}
-                        <div class="card mb-3" style="width: 500px;" >
-                            <div class="row g-0" style="height: 80px; padding:0px;">
-                                <a href="{% url 'profile' friend.sent_by.id %}" class="col-md-2">
-                                    <div  style="height: 80px;">
-                                        {% if friend.sent_by.user_image.url == None %}
-                                            <img src="{% static 'media/user-profile.png' %}"  alt="user"  width="80px" height="80px">
-                                        {% else %}
-                                            <img src="{{ friend.sent_by.user_image.url }}"  alt="user"  width="80px" height="80px">
-                                        {% endif %}
-                                        
-                                    </div>
-                                </a>
-                                    <div class="col-md-5" >
-                                        <div class="card-body" style="height: 80px; padding:auto; margin:auto;">
-                                            <h5 class="card-title">{{ friend.sent_by.username }}</h5>
-                                            <p class="card-text">{{ friend.sent_by.first_name}} {{ friend.sent_by.last_name }}</p>
-                                        </div>
-                                    </div>
-                                
-                                <div class="col-md-2" style="display:flex; flex-direction:column; justify-content:center; height: 80px; margin:auto; "> 
-                                    <button class="btn-primary accept" data-friendId="{{ friend.id }}" style="max-width:90%; min-width:fit-content ;">accept</button>
+                        {% for friend in results.received_not_accepted %}
+                        <div class="card mb-3 user-card" style="width: 500px;" >
+                            <div class="row g-0 card-main" style="height: 80px; padding:0px;">
+                                <div class="col-md-2 user-profile-img"  style="height: 80px;">
+                                    {% if friend.sent_by.user_image.url == None %}
+                                        <img src="{% static 'media/user-profile.png' %}"  alt="user"  width="80px" height="80px">
+                                    {% else %}
+                                        <img src="{{ friend.sent_by.user_image.url }}"  alt="user"  width="80px" height="80px">
+                                    {% endif %}
+                                    
                                 </div>
-                                <div class="col-md-2" style="display:flex; flex-direction:column; justify-content:center; height: 80px; margin:auto;"> 
-                                    <button class="btn-primary delete" data-friendId="{{ friend.id }}" style="max-width:90%; min-width:fit-content ;">delete</button>
+                                <div class="col-md-5 card-body-container" >
+                                    <div class="card-body" style="height: 80px; padding:auto; margin:auto;">
+                                        <h5 class="card-title uname">{{ friend.sent_by.username }}</h5>
+                                        <p class="card-text fname">{{ friend.sent_by.first_name}} {{ friend.sent_by.last_name }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 button" style="display:flex; flex-direction:column; justify-content:center; height: 80px; margin:auto; "> 
+                                    <button class="btn-primary accept accept-btn" data-friendId="{{ friend.id }}" style="max-width:90%; min-width:fit-content ;">accept</button>
+                                </div>
+                                <div class="col-md-2 button" style="display:flex; flex-direction:column; justify-content:center; height: 80px; margin:auto;"> 
+                                    <button class="btn-primary delete delete-btn" data-friendId="{{ friend.id }}" style="max-width:90%; min-width:fit-content ;">delete</button>
                                 </div>
                             </div>
                         </div>
                         {% endfor %}
                         {% else %}
-                            <div class="card mb-3" style="width: 500px;" >
+                            <div class="card mb-3 card-body-container" style="width: 500px;" >
                                 <div class="card-body" style="height: 80px; padding:auto; margin:auto;">
-                                    <p class="card-text">No request received from such user</p>
+                                    <p class="card-text fname">No new requests</p>
                                 </div>
                             </div>
                         {% endif %}

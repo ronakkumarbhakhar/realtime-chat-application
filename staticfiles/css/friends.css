@@ -1,8 +1,9 @@
 
 .container{
    border: 0px;
-   margin-top: 20px;
+   margin-top: 80px;
    max-width: 1500px;
+   font-size: 2rem;
 }
 .card{
     min-height: fit-content;
@@ -15,9 +16,13 @@
     justify-content: center;
     text-align: center;
     align-items: center;
-    
+    font-size: 1.8rem;
+    font-weight: 600;
 }
 button{
     text-decoration: none;
 }
 
+.category-btn{
+    border-radius: 25px;
+}

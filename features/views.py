@@ -134,6 +134,7 @@ def searchView(request):
     
     return render(request, 'features/search.html', {'results':results})
 
+# 
 
 def chat_room(request,user2id):
     user1=request.user
@@ -148,14 +149,22 @@ def chat_room(request,user2id):
         user2_id=str(user2id)
         room_name=user2_id+'--'+user1_id
 
+    friends=find_friends(user1)
+    # friends['sent_accepted'] | friends['received_accepted']
+    search_result=[]
+    for friend in friends['sent_accepted']:
+        search_result.append(friend.sent_to)
+    for friend in friends['received_accepted']:
+        search_result.append(friend.sent_by)
     chats=models.Chat.objects.filter(roomname=room_name).order_by('date')
-    context={'user1':user1.id,
+    context={
+             'user1':user1.id,
              'user2':user2id,
              'room_name':room_name,
              'chats':chats,
-             'user':user1
+             'user':user1,
+             'friends':search_result,
             }
-
     
     return render(request, 'features/chat_room.html', {'context':context})
 

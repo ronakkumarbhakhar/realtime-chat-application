@@ -15,7 +15,22 @@
 {% block content %}
     <section class="section-container">
         <div class="profile">
-
+            {% for friend in context.friends %}
+            <a class="friends-card-link" href="{% url 'chat_room' friend.id %}">
+                <div class="friends-card">
+                    <figure class="user-figure">
+                        {% if friend.user_image.url == None %}
+                            <img class="user-img" src="{% static 'media/user-profile.png' %}"  alt="user"  width="80px" height="80px">
+                        {% else %}
+                            <img class="user-img" src="{{ friend.user_image.url }}"  alt="user"  width="80px" height="80px">
+                        {% endif %}
+                    </figure>
+                    <div class="user-detail">
+                        <p class="uname">{{friend.username}}</p>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
         </div>
         <div  class="chat-container">
             <div id="chat-log" class="chat-log">
